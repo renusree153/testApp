@@ -2,18 +2,21 @@
 import {React, createContext, useState} from "react";
 import { Details } from "emissions-library4";
 
-const dataPlan = createContext();
-//export const dataPlanSet = createContext();
+const UserContext = createContext();
 
-export function DataPlanProvider ({children}) {
+export function UserContextProvider ({children}) {
     const [isEnabled, setIsEnabled] = useState(true);
-    // it is resetting to false everytime 
+    const [isRunning, setIsRunning] = useState(true);
+    const values = {
+        isEnabled,
+        setIsEnabled,
+        isRunning,
+        setIsRunning,
+    };
     return (
-        <dataPlan.Provider value = {{isEnabled, setIsEnabled}}>
+        <UserContext.Provider value = {values}>
             {children}
-        </dataPlan.Provider>
+        </UserContext.Provider>
     );
 };
-
-
-export default dataPlan; 
+export default UserContext; 

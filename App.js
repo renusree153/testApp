@@ -1,14 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Platform } from 'react-native';
 import LocationFinder, {Details, SignIn} from 'emissions-library4';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {useRoute} from '@react-navigation/native';
-//import DeviceInfo from 'react-native-device-info';
+import * as Application from 'expo-application';
+import * as Device from 'expo-device';
 const Stack = createNativeStackNavigator();
+import Constants from 'expo-constants';
  
 function LocationGetter ({navigation}) { 
+  useEffect(() => {
+    // we want more information than this, manufacturer, IP address
+    // hash the installation ID by looking at the code for that
+  }, []);
   return (
     <LocationFinder />
   );
@@ -31,7 +37,7 @@ function HomeScreen ({navigation}) {
   return (
     <View>
       <Button 
-        title = "Start your trip"
+        title = "Let's start collecting trip data!"
         onPress = { () => navigation.navigate('Location')} // calling LocationGetter function which calls LocationFinder
                                                           // the library 
       />
@@ -43,7 +49,9 @@ function HomeScreen ({navigation}) {
         title = "Sign in/Register"
         onPRess = { () => navigation.navigate('SignIn')}
       />
-      <Text styles = {styles.containter}> "Set Your Preferences" allows you to customize your data plan option, and is by default set to True</Text>
+      <Text styles = {styles.containter}> "Set Your Preferences" allows you to customize your data plan option, and is by default set to True
+      Please note that if you start your trip and navigate away from the screen and click on another Screen, your trip will automatically
+      be terminated.</Text>
     </View>
   )
 }
