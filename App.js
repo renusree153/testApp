@@ -12,6 +12,7 @@ import Constants from 'expo-constants';
  
 function LocationGetter ({navigation}) { 
   useEffect(() => {
+    // hello
     // we want more information than this, manufacturer, IP address
     // hash the installation ID by looking at the code for that
   }, []);
